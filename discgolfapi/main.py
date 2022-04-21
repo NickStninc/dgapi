@@ -38,7 +38,7 @@ def layout_create(layout : schemas.Layout, db: Session = Depends(get_db)):
 
 @app.post('/holes')
 def holes_create(holes : schemas.Holes, db : Session = Depends(get_db)):
-  new_holes = models.Holes(pictures=holes.pictures, number=holes.number, par=holes.par, feet=holes.feet, mandatory=holes.mandatory, hazzards = holes.hazzards, outOfBounds=holes.outOfBounds)
+  new_holes = models.Holes(picture=holes.picture, number=holes.number, par=holes.par, feet=holes.feet, mandatory=holes.mandatory, hazzards = holes.hazzards, outOfBounds=holes.outOfBounds)
   db.add(new_holes)
   db.commit()
   db.refresh(new_holes)  
@@ -46,7 +46,11 @@ def holes_create(holes : schemas.Holes, db : Session = Depends(get_db)):
 
 
 @app.post('/routes')
-def routes_create(routes : schemas.Routes):
-  return routes
+def routes_create(routes : schemas.Routes, db : Session = Depends(get_db)):
+  new_routes= models.Routes(title=routes.title, content=routes.content, video=routes.video)
+  db.add(new_routes)
+  db.commit()
+  db.refresh(new_routes) 
+  return new_routes
 
 
