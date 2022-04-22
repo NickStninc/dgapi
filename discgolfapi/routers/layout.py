@@ -5,11 +5,11 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(
     prefix="/layout",
-    tags=["layout"],
+    tags=["Layout"],
 )
 
 
-@router.post("/layout", status_code=status.HTTP_201_CREATED, tags={"Layout"})
+@router.post("/", status_code=status.HTTP_201_CREATED)
 def layout_create(layout: schemas.Layout, db: Session = Depends(database.get_db)):
     new_layout = models.Layout(
         title=layout.title,
