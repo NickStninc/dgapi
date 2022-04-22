@@ -12,7 +12,7 @@ class Course(BaseModel):
   established : str
   property : str
   tees : str
-  availiability : str
+  availability : str
   targets : str
 
 
